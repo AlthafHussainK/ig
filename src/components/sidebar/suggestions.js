@@ -13,7 +13,9 @@ export default function Suggestions() {
     }
 
     console.log('userId', userId)
-    suggestedProfiles()
+    if (userId) {
+      suggestedProfiles()
+    } 
   }, [userId])
 
 
