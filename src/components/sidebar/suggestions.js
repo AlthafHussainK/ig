@@ -3,7 +3,7 @@ import PropTypes  from "prop-types"
 import Skeleton from "react-loading-skeleton"
 import { getSuggestedProfiles } from '../../services/firebase'
 
-export default function Suggestions() {
+export default function Suggestions({ userId }) {
   const [profiles, setProfiles] = useState(null)
 
   useEffect(() => {
