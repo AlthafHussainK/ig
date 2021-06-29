@@ -23,7 +23,7 @@ export default function Comments({ docId, comments: allComments, posted, comment
           </p>
         ))}
         <p className="text-gray-base uppercase text-xs mt-2">
-          {posted}
+          {formatDistance(posted, new Date())} ago
         </p>
       </div>
     </>
