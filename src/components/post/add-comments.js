@@ -14,6 +14,7 @@ export default function AddComment({ docId, comments, setComments, commentInput 
     event.preventDefault()
 
     setComments([{ displayName, comment }, ...comments])
+    setComments('')
 
     return null
   }
