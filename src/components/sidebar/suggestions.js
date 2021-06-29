@@ -10,14 +10,12 @@ export default function Suggestions({ userId, following }) {
   useEffect(() => {
     async function suggestedProfiles() {
       const response = await getSuggestedProfiles(userId, following)
-
       setProfiles(response)
     }
 
     if (userId) {
       suggestedProfiles()
     } 
-
   }, [userId])
 
 
@@ -41,7 +39,6 @@ export default function Suggestions({ userId, following }) {
       </div> 
     </div>  
   ) : null
-  
 }
 
 Suggestions.propTypes = {
