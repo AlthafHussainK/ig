@@ -9,18 +9,20 @@ export default function Suggestions({ userId, following }) {
 
   useEffect(() => {
     async function suggestedProfiles() {
-      const response = getSuggestedProfiles(userId, following)
+      const response = await getSuggestedProfiles(userId, following)
+
       setProfiles(response)
     }
 
     if (userId) {
       suggestedProfiles()
     } 
+
   }, [userId])
 
 
   return !profiles ? (
-    <Skeleton count={1} height={150} className="mt-5" />
+    <Skeleton count={1} height={150} className="mt-5" /> 
   ) : profiles.length > 0 ? ( 
     <div className="rounded flex flex-col">
       <div className="text-sm flex items-center align-items justify-between mb-2">
@@ -36,7 +38,7 @@ export default function Suggestions({ userId, following }) {
             userId={userId}
           />
         ))}
-      </div>
+      </div> 
     </div>  
   ) : null
   
