@@ -9,7 +9,7 @@ export default function SuggestedProfile({ spDocId, username, profileId, userId 
   async function handleFollowUser() {
     setFollowed(true)
 
-    await updateLoggedInUserFollowing(loggedInUserDocId, profileId) 
+    await updateLoggedInUserFollowing(loggedInUserDocId, profileId, false) 
 
     await updateFollowedUserFollowers(spDocId, userId)
 

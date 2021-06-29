@@ -34,3 +34,16 @@ export async function getSuggestedProfiles(userId, following) {
 }
 
 // updateLoggedInUserFollowing, updateFollowedUserFollowers
+
+export async function updateLoggedInUserFollowing(loggedInUserDocId, profileId, isFollowingProfile) {
+
+  return firebase
+    .firestore()
+    .collection('users')
+    .doc(loggedInUserDocId)
+    .update({
+      following: isFollowingProfile 
+        ? FieldValue.arrayRemove(profileId)
+        : FieldValue.arrayUnion(profileId)
+    })
+}
