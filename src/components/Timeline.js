@@ -8,7 +8,7 @@ export default function Timeline () {
   return (
     <div className="container col-span-2">
       {!photos ? (
-            <Skeleton count={3} width={640} height={400} className="mb-4" />
+            <Skeleton count={3} width={640} height={300} className="mb-4" />
       ) :  photos?.length > 0 ? (
         photos.map((content) => <Post key={content.docId} content={content} />)
       ) : (
