@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import PropTypes from 'prop-types'
 import FirebaseContext from "../../context/firebase";
 import UserContext from "../../context/user";
+import { updateFollowedUserFollowers } from "../../services/firebase";
 
 export default function AddComment({ docId, comments, setComments, commentInput }) {
   const [comment, setComment] = useState('')
@@ -14,9 +15,15 @@ export default function AddComment({ docId, comments, setComments, commentInput 
     event.preventDefault()
 
     setComments([{ displayName, comment }, ...comments])
-    setComments('')
+    setComment('')
 
-    return null
+    return firebase
+      .firestore()
+      .collection('photos')
+      .doc(docId)
+      .update({
+        comments: FieldValue.arrayUnion({ displayName, comment })
+      })
   }
 
   return (
