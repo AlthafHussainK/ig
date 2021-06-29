@@ -13,6 +13,18 @@ export default function SuggestedProfile({ userDocId, username, profileId, userI
           src={`/images/avatars/${username}.jpg`}
           alt=""
         />
+        <Link to={`/p/${username}`}>
+          <p className="font-bold text-sm">{username}</p>
+        </Link>
+      </div>
+      <div>
+        <button 
+          className="font-bold text-xs text-blue-medium"
+          type="button"
+          onClick={() => console.log('Follow this user')} 
+        >
+          Follow
+        </button>
       </div>
     </div>
   ) : null
