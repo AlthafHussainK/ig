@@ -9,13 +9,18 @@ export default function Header({
   photosCount,  
   followerCount, 
   setFollowerCount,
-  profile: { docId: profileDocId, userId: profileUserId, fullname, following = [], username: profileUsername } 
+  profile: { docId: profileDocId, userId: profileUserId, fullname, following = [], followers = [], username: profileUsername } 
   }) {
   const { user } = useUser()
   const [isFollowingProfile, setIsFollowingProfile] = useState(false)
   const activeBtnFollow = user.username && user.username !== profileUsername
 
-  const handleToggleFollow = () => 1
+  const handleToggleFollow = () => {
+    setIsFollowingProfile((isFollowingProfile) => !isFollowingProfile)
+    setFollowerCount({
+      followerCount: isFollowingProfile ? followers.length - 1 : followers.length + 1
+    })
+  }
 
   useEffect(() => {
     const isLoggedInUserFollowingProfile = async () => {
@@ -66,6 +71,7 @@ Header.propTypes = {
     userId: PropTypes.string,
     fullname: PropTypes.string,
     username: PropTypes.string,
-    following: PropTypes.string,
+    following: PropTypes.array,
+    followers: PropTypes.array,
   }).isRequired 
 }
