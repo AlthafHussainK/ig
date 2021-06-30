@@ -13,7 +13,7 @@ export default function Profile() {
     async function checkUserExists() {
       const user = await getUserByUsername(username)
       if (user.length > 0) {
-        setUser(user)
+        setUser(user[0])
         setUserExists(true)
       } else {
         setUserExists(false)
@@ -26,7 +26,7 @@ export default function Profile() {
 
   return userExists ? (
     <div className="bg-gray-background">
-      <div className="mx-auto max-w-screen-lg">{username}</div>
+      <div className="mx-auto max-w-screen-lg">{user.fullname}</div>
     </div>
   ) : null
 } 
