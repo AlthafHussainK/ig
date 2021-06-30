@@ -18,7 +18,7 @@ export default function Header({
   const handleToggleFollow = () => {
     setIsFollowingProfile((isFollowingProfile) => !isFollowingProfile)
     setFollowerCount({
-      followerCount: isFollowingProfile ? followers.length - 1 : followers.length + 1
+      followerCount: isFollowingProfile ? followerCount - 1 : followerCount + 1
     })
   }
 
@@ -67,9 +67,9 @@ export default function Header({
                 photos
               </p>
               <p className="mr-10">
-                <span className="font-bold">{followers.length}</span>
+                <span className="font-bold">{followerCount}</span>
                 {` `}
-                {followers.length === 1 ? 'follower' : 'following'}
+                {followerCount === 1 ? 'follower' : 'following'}
               </p>
               <p className="mr-10">
                 <span className="font-bold">{following.length} </span>
