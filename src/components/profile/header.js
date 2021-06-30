@@ -9,14 +9,15 @@ export default function Header({
   photosCount,  
   followerCount, 
   setFollowerCount,
-  profile: { docId: profileDocId, userId: profileUserId, fullname, following = [] } 
+  profile: { docId: profileDocId, userId: profileUserId, fullname, following = [], username: profileUsername } 
   }) {
   const { user } = useUser()
   const [isFollowingProfile, setIsFollowingProfile] = useState(false)
+  const activeBtnFollow = user.username && user.username !== profileUsername
 
   useEffect(() => {
     const isLoggedInUserFollowingProfile = async () => {
-      const isFollowing = await isLoggedInUserFollowingProfile(user.username, profileUserId)
+      const isFollowing = await isUserFollowingProfile(user.username, profileUserId)
       setIsFollowingProfile(isFollowing)
     }
 
@@ -25,7 +26,24 @@ export default function Header({
     }
   }, [user.username, profileUserId])
 
-  return null
+  return (
+    <div className="grid grid-cols-3 gap-4 justify-between mx-auto max-w-screen-lg">
+      <div className="container flex justify-center">
+        {user.username && (
+          <img 
+          className="rounded-full h-40 w-40 flex"
+          alt={`${profileUsername} profile picture`}
+          src={`/images/avatars/${profileUsername}.jpg`}
+        />
+        )}
+      </div>
+      <div className="flex items-center justify-center flex-col col-span-2">
+        <div className="container flex items-center">
+          <p className="text-2xl mr-4">{profileUsername}</p>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 Header.propTypes = {
@@ -36,6 +54,7 @@ Header.propTypes = {
     docId: PropTypes.string,
     userId: PropTypes.string,
     fullname: PropTypes.string,
+    username: PropTypes.string,
     following: PropTypes.string,
   }).isRequired 
 }
