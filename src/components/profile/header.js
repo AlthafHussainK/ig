@@ -15,6 +15,8 @@ export default function Header({
   const [isFollowingProfile, setIsFollowingProfile] = useState(false)
   const activeBtnFollow = user.username && user.username !== profileUsername
 
+  const handleToggleFollow = () => 1
+
   useEffect(() => {
     const isLoggedInUserFollowingProfile = async () => {
       const isFollowing = await isUserFollowingProfile(user.username, profileUserId)
@@ -44,7 +46,7 @@ export default function Header({
             <button 
               className="bg-blue-medium font-bold text-sm rounded text-white w-20 h-8"
               type="button"
-              // onClick={handleToggleFollow}
+              onClick={handleToggleFollow}
             >
               {isFollowingProfile ? 'Unfollow' : 'Follow' }
             </button>
