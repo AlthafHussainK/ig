@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Skeleton from 'react-loading-skeleton'
 import useUser from '../../hooks/use-user'
 import { isUserFollowingProfile } from '../../services/firebase'
+import { toggleFollow } from '../../services/firebase'
 
 
 export default function Header({ 
@@ -15,11 +16,12 @@ export default function Header({
   const [isFollowingProfile, setIsFollowingProfile] = useState(false)
   const activeBtnFollow = user.username && user.username !== profileUsername
 
-  const handleToggleFollow = () => {
+  const handleToggleFollow = async () => {
     setIsFollowingProfile((isFollowingProfile) => !isFollowingProfile)
     setFollowerCount({
       followerCount: isFollowingProfile ? followerCount - 1 : followerCount + 1
     })
+    await toggleFollow(isFollowingProfile, user.docId, profileDocId, profileUserId, user.userId)
   }
 
   useEffect(() => {
@@ -69,7 +71,7 @@ export default function Header({
               <p className="mr-10">
                 <span className="font-bold">{followerCount}</span>
                 {` `}
-                {followerCount === 1 ? 'follower' : 'following'}
+                {followerCount === 1 ? 'follower' : 'followers'}
               </p>
               <p className="mr-10">
                 <span className="font-bold">{following.length} </span>
