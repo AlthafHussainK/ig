@@ -9,7 +9,7 @@ export default function Header({
   photosCount,  
   followerCount, 
   setFollowerCount,
-  profile: { docId: profileDocId, userId: profileUserId, fullname, following = [], followers = [], username: profileUsername } 
+  profile: { docId: profileDocId, userId: profileUserId, fullName, following = [], followers = [], username: profileUsername } 
   }) {
   const { user } = useUser()
   const [isFollowingProfile, setIsFollowingProfile] = useState(false)
@@ -78,6 +78,11 @@ export default function Header({
             </>
           )}
         </div>
+        <div className="container mt-4">
+          <p className="font-medium">
+            {!fullName ? <Skeleton count={1} width={644} height={24} /> : fullName}
+          </p>
+        </div>
       </div>
     </div>
   )
@@ -90,7 +95,7 @@ Header.propTypes = {
   profile: PropTypes.shape({
     docId: PropTypes.string,
     userId: PropTypes.string,
-    fullname: PropTypes.string,
+    fullName: PropTypes.string,
     username: PropTypes.string,
     following: PropTypes.array,
     followers: PropTypes.array,

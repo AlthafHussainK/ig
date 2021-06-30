@@ -39,7 +39,7 @@ Profile.propTypes = {
     emailAddress: PropTypes.string,
     followers: PropTypes.array,
     following: PropTypes.array,
-    fullname: PropTypes.string,
+    fullName: PropTypes.string,
     userId: PropTypes.string,
     username: PropTypes.string
   })

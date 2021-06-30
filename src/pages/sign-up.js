@@ -9,7 +9,7 @@ export default function SignUp() {
   const { firebase } = useContext(FirebaseContext)
   
   const [username, setUsername] = useState('')
-  const [fullname, setFullname] = useState('')
+  const [fullName, setFullname] = useState('')
   const [emailAddress, setEmailAddress] = useState('')
   const [password, setPassword] = useState('')
 
@@ -33,7 +33,7 @@ export default function SignUp() {
         await firebase.firestore().collection('users').add({
           userId: createdUserResult.user.uid,
           username: username.toLocaleLowerCase(),
-          fullname,
+          fullName,
           emailAddress: emailAddress.toLocaleLowerCase(), 
           following: [],
           dateCreated: Date.now()
@@ -81,7 +81,7 @@ export default function SignUp() {
           placeholder="Full name"
           className="text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2"
           onChange={({ target }) => setFullname(target.value)}
-          value={fullname}
+          value={fullName}
         />
         <input aria-label="Enter your email addres" 
           type="text"
