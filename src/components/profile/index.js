@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Header from './header'
 import { getUserByUsername, getUserPhotosByUsername } from '../../services/firebase'
 
-export default function Profile({ username }) {
+export default function Profile({ user }) {
   const reducer = (state, newState) => ({ ...state, ...newState })
   const initialState = { 
     profile: {},
@@ -15,20 +15,29 @@ export default function Profile({ username }) {
 
   useEffect(() => {
     async function getProfileInfoAndPhotos() {
-      const [user] = await getUserByUsername(username)
-      const photos = await getUserPhotosByUsername(username)
+      const photos = await getUserPhotosByUsername(user.username)
+      console.log('photosssssss: ', photos)
       // dispatch({ profile: user, photoCollection: photos, followerCount: user.followers.length })
     }
-    if (username) {
+    if (user.username) {
       getProfileInfoAndPhotos()
     }
-  }, [username])
+  }, [user.username])
 
   return <>
    <Header />
+   <p>{user.username}' Profile</p>
   </>
 }
 
 Profile.propTypes = {
-  username: PropTypes.string.isRequired
-}
+  user: PropTypes.shape({
+    dateCreated: PropTypes.number,
+    emailAddress: PropTypes.string,
+    followers: PropTypes.array,
+    following: PropTypes.array,
+    fullname: PropTypes.string,
+    userId: PropTypes.string,
+    username: PropTypes.string
+  })
+};
