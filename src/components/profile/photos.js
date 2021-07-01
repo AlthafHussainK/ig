@@ -12,7 +12,9 @@ export default function Photos({ photos }) {
             <Skeleton count={12} width={320} height={400} />
           </>
         ) : photos.length > 0 ? (
-          photos.map((photo) => <div key={photo.docId} className="relative group" />)
+          photos.map((photo) => <div key={photo.docId} className="relative group">
+            <img src={photo.imageSrc} alt={photo.caption} />
+          </div>)
         ) : null}
       </div>
     </div>
